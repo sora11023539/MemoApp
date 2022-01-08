@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 function Hello() {
   return (
@@ -11,11 +11,11 @@ function Hello() {
 
 const styles = StyleSheet.create({
   text: {
-    color: "#ffffff",
-    backgroundColor: "blue",
-    fontSize: "40",
-    fontWeight: "bold",
-    padding: "16",
+    color: '#ffffff',
+    backgroundColor: 'blue',
+    fontSize: 40,
+    fontWeight: 'bold',
+    padding: 16,
   },
 });
 
