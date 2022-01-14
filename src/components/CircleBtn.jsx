@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { string, shape } from 'prop-types';
-// アイコン使用
-import { Feather } from '@expo/vector-icons';
+
+import Icon from './Icon';
 
 export default function CircleBtn(props) {
   // props 他のファイルで書き換えれるように
@@ -10,7 +10,7 @@ export default function CircleBtn(props) {
   return (
     // スタイル上書きできるように
     <View style={[styles.circleBtn, style]}>
-      <Feather name={name} size={32} color="white" />
+      <Icon name={name} size={24} color="white" />
     </View>
   );
 }

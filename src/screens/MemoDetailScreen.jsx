@@ -16,7 +16,7 @@ export default function MemoDetailScreen() {
         <Text style={styles.memoDate}>2022年1月13日</Text>
       </View>
 
-      {/* はみ出しても表示される */}
+      {/* ScrollView = はみ出しても表示される */}
       <ScrollView style={styles.memoView}>
         <Text style={styles.memoText}>
           買い物リスト
@@ -24,7 +24,7 @@ export default function MemoDetailScreen() {
         </Text>
       </ScrollView>
 
-      <CircleBtn style={{ top: 160, bottom: 'auto' }} name="edit-2" />
+      <CircleBtn style={{ top: 160, bottom: 'auto' }} name="pencil" />
     </View>
   );
 }
