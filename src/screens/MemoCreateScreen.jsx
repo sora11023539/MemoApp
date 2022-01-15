@@ -1,21 +1,22 @@
 import React from 'react';
 import {
-  View, StyleSheet, TextInput, KeyboardAvoidingView,
+  View, StyleSheet, TextInput,
 } from 'react-native';
 
 import AppBar from '../components/AppBar';
 import CircleBtn from '../components/CircleBtn';
+import KeyboardSafeView from '../components/KeyboardSafeView';
 
 export default function MemoCreateScreen() {
   return (
     // KeyboardAvoidingView behavior="height" = 囲ったコンテンツをリサイズしてくれる
-    <KeyboardAvoidingView style={styles.container} behavior="height">
+    <KeyboardSafeView style={styles.container} behavior="height">
       <AppBar />
       <View style={styles.inputContainer}>
         <TextInput value="" multiline style={styles.input} />
       </View>
       <CircleBtn name="check" />
-    </KeyboardAvoidingView>
+    </KeyboardSafeView>
   );
 }
 
