@@ -1,17 +1,18 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { string, shape } from 'prop-types';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { string, shape, func } from 'prop-types';
 
 import Icon from './Icon';
 
 export default function CircleBtn(props) {
   // props 他のファイルで書き換えれるように
-  const { style, name } = props;
+  const { style, name, onPress } = props;
   return (
     // スタイル上書きできるように
-    <View style={[styles.circleBtn, style]}>
+    // TouchableOpacity = 透明度
+    <TouchableOpacity style={[styles.circleBtn, style]} onPress={onPress}>
       <Icon name={name} size={24} color="white" />
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -19,10 +20,13 @@ CircleBtn.propTypes = {
   style: shape(),
   // isRequired 必須の項目
   name: string.isRequired,
+  // func = onPressが関数である
+  onPress: func,
 };
 
 CircleBtn.defaultProps = {
   style: null,
+  onPress: null,
 };
 
 const styles = StyleSheet.create({
