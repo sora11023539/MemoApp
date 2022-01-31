@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
-  View, Text, TextInput, StyleSheet, TouchableOpacity,
+  View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native';
+import firebase from 'firebase';
 
 import Btn from '../components/Btn';
 
@@ -10,6 +11,29 @@ export default function SignUpScreen(props) {
   // [保持したいデータ, 更新する関数] = useState('初期値')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // 履歴はMemoListのみ
+  // 行き先はメモリスト
+  function handlePress() {
+    // emailとpasswordをfirebaseに渡す
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      // コールバック関数 イベントが発生した時、それをトリガーとして実行する関数
+      // ユーザーに関する情報を受け取る
+      // then 成功した場合
+      .then((userCredential) => {
+        const { user } = userCredential;
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'MemoList' }],
+        });
+        console.log(user.uid);
+      })
+      // catch 失敗した場合
+      .catch((error) => {
+        Alert.alert(error.code);
+      });
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
@@ -34,13 +58,7 @@ export default function SignUpScreen(props) {
         />
         <Btn
           label="Submit"
-          onPress={() => {
-            // 履歴はMemoListのみ
-            navigation.reset({
-              index: 0,
-              routes: [{ name: 'MemoList' }],
-            });
-          }}
+          onPress={handlePress}
         />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
