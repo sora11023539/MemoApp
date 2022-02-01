@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native';
@@ -10,6 +10,22 @@ export default function LogInScreen(props) {
   const { navigation } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // useEffect この画面を開いた瞬間に実行される
+  useEffect(() => {
+    // login状態の監視
+    // 関数を実行することでキャンセルされる
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'MemoList' }],
+        });
+      }
+    });
+    // ログインスクリーンがアンマウントされる直前に関数を実行する
+    return unsubscribe;
+  }, []); // コンポーネントがマウントされた時、一度だけ実行される
 
   function handlePress() {
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -51,6 +67,7 @@ export default function LogInScreen(props) {
         />
         <Btn
           label="Submit"
+          // eslint-disable-next-line
           onPress={handlePress}
         />
         <View style={styles.footer}>

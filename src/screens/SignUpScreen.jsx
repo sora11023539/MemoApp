@@ -58,6 +58,7 @@ export default function SignUpScreen(props) {
         />
         <Btn
           label="Submit"
+          // eslint-disable-next-line
           onPress={handlePress}
         />
         <View style={styles.footer}>
